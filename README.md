@@ -1,73 +1,124 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+API Gestión de Clientes, Restaurantes y Órdenes
+1. Descripción
+Esta API permite gestionar entidades relacionadas con un sistema de restaurantes, donde se puede realizar:
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Registro de clientes y restaurantes.
+Creación de órdenes vinculadas a clientes y restaurantes específicos.
+La API aplica restricciones como:
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Limitar la capacidad de clientes en los restaurantes.
+Aceptar únicamente clientes adultos.
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+2. Requisitos
+Node.js y Yarn.
+NestJS (para la arquitectura backend).
+PostgreSQL (base de datos relacional).
+TypeScript (para un desarrollo tipado y robusto).
+Para documentación:
 
-## Installation
+Swagger (API interactiva con Swagger 2.0).
 
-```bash
-$ yarn install
-```
 
-## Running the app
+3. Tecnologías utilizadas
+NestJS: Framework para la construcción de aplicaciones backend en Node.js.
+TypeORM: ORM para la integración de la base de datos PostgreSQL.
+Swagger: Herramienta de documentación de API.
+PostgreSQL: Base de datos relacional.
 
-```bash
-# development
-$ yarn run start
 
-# watch mode
-$ yarn run start:dev
+4. Estructura del proyecto
+src/
+│
+├── client/                     # Módulo para gestión de clientes
+│   ├── client.controller.ts     # Controlador de clientes
+│   ├── client.service.ts        # Servicio de clientes
+│   ├── client.entity.ts         # Entidad Cliente
+│   ├── client.module.ts
+│   ├── dto/                     # DTOs de cliente (validación de datos)
+│
+├── restaurant/                 # Módulo para gestión de restaurantes
+│   ├── restaurant.controller.ts # Controlador de restaurantes
+│   ├── restaurant.service.ts    # Servicio de restaurantes
+│   ├── restaurant.entity.ts     # Entidad Restaurante
+│   ├── restaurant.module.ts
+│   ├── dto/                     # DTOs de restaurante
+│
+├── order/                      # Módulo para gestión de órdenes
+│   ├── order.controller.ts      # Controlador de órdenes
+│   ├── order.service.ts         # Servicio de órdenes
+│   ├── order.entity.ts          # Entidad Orden
+│   ├── order.module.ts
+│   ├── dto/                     # DTOs de orden
+│
+├── common/                     # Utilidades y excepciones comunes
+│   ├── filters/              # Excepciones personalizadas
+│ 
+└── main.ts                     # Punto de entrada de la aplicación
 
-# production mode
-$ yarn run start:prod
-```
 
-## Test
+5. Instalación y configuración
+Clonar el repositorio:
 
-```bash
-# unit tests
-$ yarn run test
+git clone <URL del repositorio>
+cd <nombre-del-repositorio>
+Instalar dependencias:
 
-# e2e tests
-$ yarn run test:e2e
+yarn install
+Configurar las variables de entorno: Crear un archivo .env en la raíz del proyecto con el siguiente contenido (ajustar según tu entorno):
 
-# test coverage
-$ yarn run test:cov
-```
 
-## Support
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USER=postgres
+DATABASE_PASSWORD=password
+DATABASE_NAME=prueba_tecnica
+Ejecutar la base de datos:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Asegúrate de que PostgreSQL esté corriendo en localhost:5432.
+Crear una base de datos llamada prueba_tecnica (si no existe).
+Iniciar la aplicación:
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+yarn start:dev
+6. Documentación con Swagger
+Una vez la aplicación esté corriendo, Swagger estará disponible en:
 
-## License
 
-Nest is [MIT licensed](LICENSE).
+http://localhost:3000/api
+Swagger proporciona una interfaz visual para probar los endpoints de la API, detallando los datos requeridos, respuestas posibles y errores. La configuración de Swagger se encuentra en el archivo main.ts y está habilitada automáticamente en modo desarrollo.
+
+7. Endpoints principales
+Clientes:
+
+POST /clients: Crear un nuevo cliente.
+GET /clients: Listar todos los clientes.
+GET /clients/:id: Obtener un cliente específico.
+PUT /clients/:id: Actualizar un cliente.
+DELETE /clients/:id: Eliminar un cliente.
+Restaurantes:
+
+POST /restaurants: Crear un nuevo restaurante.
+GET /restaurants: Listar todos los restaurantes.
+GET /restaurants/:id: Obtener un restaurante específico.
+PUT /restaurants/:id: Actualizar un restaurante.
+DELETE /restaurants/:id: Eliminar un restaurante.
+Órdenes:
+
+POST /orders: Crear una nueva orden asociada a un cliente y restaurante.
+GET /orders: Listar todas las órdenes.
+GET /orders/:id: Obtener una orden específica.
+PUT /orders/:id: Actualizar una orden.
+DELETE /orders/:id: Eliminar una orden.
+
+
+8. Validaciones y Restricciones
+Capacidad del restaurante: La cantidad de clientes asignados a un restaurante no debe exceder su capacidad máxima.
+Edad del cliente: Solo se permite registrar clientes mayores de 18 años.
+
+
+9. Contacto
+
+Alejandro Espino Pérez.
++53 56108535.
+GMAIL: espinoperezalejandro50@gmail.com
